@@ -1,50 +1,38 @@
-using System.IO;
+using Fusion;
 
 namespace Scr.Status.Health {
-    public readonly struct TakeHealEventBus {
+    
+    /// <summary>
+    /// 回復を発生させた際に発火されるイベントバス
+    /// </summary>
+    public interface ITakeHealEventBus : INetworkStruct {
+        
+        /// <summary>
+        /// 回復の対象になるオブジェクトのID
+        /// </summary>
+        int TargetID { get; }
+        
+        /// <summary>
+        /// 回復量
+        /// </summary>
+        IHeal Heal { get; }
+        
+    }
+    
+    public readonly struct TakeHealEventBus : ITakeHealEventBus {
 
-        private readonly int m_targetId;
+        private readonly int _targetID;
 
-        private readonly Heal m_heal;
-
-        public TakeHealEventBus(int id, Heal heal) {
-            
-            m_targetId = id;
-            
-            m_heal = heal;
-            
+        private readonly IHeal _heal;
+        
+        public int TargetID => _targetID;
+        
+        public IHeal Heal => _heal;
+        
+        public TakeHealEventBus (int targetID, IHeal heal) {
+            _targetID = targetID;
+            _heal = heal;
         }
         
-        public static byte[] Serialize(object obj) {
-            var eventBus = (TakeHealEventBus)obj;
-            
-            byte[] healData = Heal.Serialize(eventBus.m_heal);
-            
-            using (var ms = new MemoryStream())
-            using (var writer = new BinaryWriter(ms)) {
-                writer.Write(eventBus.m_targetId);
-                
-                writer.Write(healData.Length);
-                
-                writer.Write(healData);
-                
-                return ms.ToArray();
-            }
-        }
-        
-        public static TakeHealEventBus Deserialize(byte[] data) {
-            using (var ms = new MemoryStream(data))
-            using (var reader = new BinaryReader(ms)) {
-                int targetId = reader.ReadInt32();
-                
-                int healDataLength = reader.ReadInt32();
-                
-                byte[] healData = reader.ReadBytes(healDataLength);
-                
-                Heal heal = (Heal)Heal.Deserialize(healData);
-                
-                return new TakeHealEventBus(targetId, heal);
-            }
-        }
     }
 }

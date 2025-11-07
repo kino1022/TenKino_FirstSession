@@ -1,55 +1,32 @@
-using System;
-using System.IO;
+using Fusion;
 
 namespace Scr.Status.Health {
-    
-    [Serializable]
-    public class TakeDamageEventBus {
-        
-        public int TargetId { get; private set; }
-        
-        public Damage Damage { get; private set; }
-        
-        public TakeDamageEventBus(int targetId, Damage damage) {
 
-            TargetId = targetId;
-            
-            Damage = damage;
-            
-        }
+    /// <summary>
+    /// ダメージが与えられた際に発信されるイベント通知に約束するインターフェース
+    /// </summary>
+    public interface ITakeDamageEventBus : INetworkStruct {
         
-        public static byte[] Serialize(object obj) {
-            var eventBus = (TakeDamageEventBus)obj;
-            
-            byte[] damageData = Damage.Serialize(eventBus.Damage);
-            
-            MemoryStream ms = new MemoryStream();
-            using (BinaryWriter writer = new BinaryWriter(ms))
-            {
-                writer.Write(eventBus.TargetId);
-                
-                writer.Write(damageData.Length);
-                
-                writer.Write(damageData);
-            }
-            return ms.ToArray();
-        }
+        int TargetID { get; }
         
-        public static TakeDamageEventBus Deserialize(byte[] data) {
-            MemoryStream ms = new MemoryStream(data);
-            using (BinaryReader reader = new BinaryReader(ms))
-            {
-                int targetId = reader.ReadInt32();
-                
-                int damageDataLength = reader.ReadInt32();
-                
-                byte[] damageData = reader.ReadBytes(damageDataLength);
-                
-                Damage damage = (Damage)Damage.Deserialize(damageData);
-                
-                return new TakeDamageEventBus(targetId, damage);
-            }
-        }
+        IDamage Damage { get; }
+        
     }
     
+    public readonly struct TakeDamageEventBus : ITakeDamageEventBus {
+
+        private readonly int _targetID;
+
+        private readonly IDamage _damage;
+        
+        public int TargetID => _targetID;
+        
+        public IDamage Damage => _damage;
+        
+        public TakeDamageEventBus (int targetID, IDamage damage) {
+            _targetID = targetID;
+            _damage = damage;
+        }
+        
+    }
 }

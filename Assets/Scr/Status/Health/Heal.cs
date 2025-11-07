@@ -1,36 +1,33 @@
-using System;
-using System.IO;
-using Sirenix.OdinInspector;
-using UnityEngine;
+using Fusion;
 
 namespace Scr.Status.Health {
-    [Serializable]
-    public class Heal {
 
-        [SerializeField]
-        [LabelText("回復量")]
-        private int m_value;
+    /// <summary>
+    /// 回復量を表現するクラスに対して約束するインターフェース
+    /// </summary>
+    public interface IHeal : INetworkStruct {
         
-        public int Value => m_value;
+        /// <summary>
+        /// 回復量
+        /// </summary>
+        int Value { get; }
+        
+    }
+    
+    
+    public struct Heal : IHeal{
 
-        public static byte[] Serialize(object obj) {
-            var heal = (Heal)obj;
+        private readonly int _value;
+        
+        public int Value => _value;
+        
+        public Heal (int value) {
+
+            if (value < 0) {
+                throw new System.ArgumentNullException();
+            }
             
-            MemoryStream ms = new MemoryStream();
-            using (BinaryWriter writer = new BinaryWriter(ms)) {
-                writer.Write(heal.Value);
-            }
-            return ms.ToArray();
-        }
-        
-        public static Heal Deserialize(byte[] data) {
-            MemoryStream ms = new MemoryStream(data);
-            using (BinaryReader reader = new BinaryReader(ms)) {
-                int value = reader.ReadInt32();
-                return new Heal {
-                    m_value = value
-                };
-            }
+            _value = value;
         }
     }
 }
