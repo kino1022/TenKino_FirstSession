@@ -9,4 +9,5 @@ namespace Scr.Status.Health {
     public class Health : AStatus<int> , IHealth  {
         
     }
+    
 }

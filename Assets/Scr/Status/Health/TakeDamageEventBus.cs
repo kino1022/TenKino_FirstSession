@@ -35,7 +35,7 @@ namespace Scr.Status.Health {
             return ms.ToArray();
         }
         
-        public static object Deserialize(byte[] data) {
+        public static TakeDamageEventBus Deserialize(byte[] data) {
             MemoryStream ms = new MemoryStream(data);
             using (BinaryReader reader = new BinaryReader(ms))
             {
