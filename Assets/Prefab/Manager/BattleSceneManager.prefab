@@ -60,7 +60,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6481923178742989776}
   - component: {fileID: 8453181927136978448}
-  - component: {fileID: 9215881019276591061}
+  - component: {fileID: 5582509581478782256}
+  - component: {fileID: 8725277237405239714}
+  - component: {fileID: 3394429010049756068}
   m_Layer: 0
   m_Name: BattleSceneManager
   m_TagString: Untagged
@@ -103,7 +105,7 @@ MonoBehaviour:
   - {fileID: 1335058240962315521}
   NetworkedBehaviours: []
   ForceRemoteRenderTimeframe: 0
---- !u!114 &9215881019276591061
+--- !u!114 &5582509581478782256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,7 +114,72 @@ MonoBehaviour:
   m_GameObject: {fileID: 7290477042384957968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 526b142195d343c39a9184405f9ed5e0, type: 3}
+  m_Script: {fileID: 11500000, guid: f4e28285f1734a638e8ce48bc580af2b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Fusion.Unity::Fusion.Statistics.FusionNetworkObjectStatistics
-  NetworkObject: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::Scr.GameManager.GameManager
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+--- !u!114 &8725277237405239714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7290477042384957968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6b04f0c2dc4190baacdddd7cd8662b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Scr.GameManager.GameManagerLifetimeScope
+  parentReference:
+    TypeName: Scr.AppManager.ApplicationManagerLifetimeScope
+  autoRun: 1
+  autoInjectGameObjects: []
+  m_list: {fileID: 0}
+--- !u!114 &3394429010049756068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7290477042384957968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab939daa46c4dd686197714cf4e957b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RinaSymbol::RinaSymbol.InstallerList
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: m_installers
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[VContainer.Unity.IInstaller, VContainer]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|RinaStatus.Installer.Manager.StatusManagerInstaller, RinaStatus
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
