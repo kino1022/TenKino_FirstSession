@@ -33,6 +33,7 @@ namespace Scr.UI.NetworkUI {
         [LabelText("エラーメッセージウィンドウ")]
         private UIDialogViewBehaviour _errorWindow;
         
+        
         [Inject]
         public void Construct(IObjectResolver resolver) {
             _resolver = resolver;

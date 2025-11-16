@@ -1,0 +1,16 @@
+# .editorconfig
+
+# この設定をルート設定とします（これより上の階層を探しに行かない）
+root = true
+
+# C#ファイルに適用
+[*.cs]
+
+# K&Rスタイル（波括弧を行末に）
+csharp_new_line_before_open_brace_in_control_blocks = false
+csharp_new_line_before_open_brace_in_methods = false
+csharp_new_line_before_open_brace_in_types = false
+csharp_new_line_before_open_brace_in_properties = false
+csharp_new_line_before_open_brace_in_accessors = false
+csharp_new_line_before_open_brace_in_anonymous_methods = false
+csharp_new_line_before_open_brace_in_local_functions = false

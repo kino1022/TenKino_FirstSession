@@ -32,7 +32,17 @@ namespace Scr.Player {
             builder
                 .RegisterComponent(player)
                 .As<Player>();
+            
+            var networkProperty = gameObject.GetComponentFromWhole<INetworkPropertyProvider>();
 
+            if (networkProperty is null) {
+                Debug.Log("INetworkPropertyProviderがアタッチされていませんでした");
+                return;
+            }
+
+            builder
+                .RegisterComponent(networkProperty)
+                .As<INetworkPropertyProvider>();
         }
     
     }

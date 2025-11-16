@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 910428294863739685}
   - component: {fileID: -3046272999301944976}
   - component: {fileID: 1114466201450339643}
-  - component: {fileID: 7905015254291594052}
   - component: {fileID: 551871656745259002}
   - component: {fileID: 4762653995466197391}
   - component: {fileID: 6999482693132507140}
@@ -55,7 +54,6 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 7905015254291594052}
   - {fileID: 6999482693132507140}
   - {fileID: 1460128186750493144}
   ForceRemoteRenderTimeframe: 0
@@ -80,19 +78,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
---- !u!114 &7905015254291594052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8578463326829826384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d504369b0d94414b5f7518369ac69b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Scr.Status.IntStatus
-  _Value: 0
 --- !u!114 &551871656745259002
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -46,6 +46,13 @@ namespace Scr.UI {
             
         }
 
+        protected virtual void OnDestroy() {
+            _closeSubject?.Dispose();
+        }
+
+        /// <summary>
+        /// ダイアログを開く際に呼び出す非同期処理
+        /// </summary>
         public async UniTask Open_Async() {
 
             if (_isOpen.CurrentValue is true) {
@@ -64,6 +71,9 @@ namespace Scr.UI {
             OnDidOpen();
         }
         
+        /// <summary>
+        /// ダイアログを閉じる際に呼び出す非同期処理
+        /// </summary>
         public async UniTask Close_Async() {
 
             if (_isOpen.CurrentValue is false) {

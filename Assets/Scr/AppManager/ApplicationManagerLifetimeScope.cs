@@ -11,17 +11,10 @@ namespace Scr.AppManager {
         protected override void Configure(IContainerBuilder builder) {
             base.Configure(builder);
 
-            var runner = gameObject.GetComponentFromWhole<NetworkRunner>();
-
-            if (runner is null) {
-                Debug.Log("アプリケーション管理マネージャーにNetworkRunnerが存在しません。");
-                return;
-            }
-
             builder
-                .RegisterComponent(runner)
-                .As<NetworkRunner>();
-            
+                .Register<RunnerProvider>(Lifetime.Singleton)
+                .AsImplementedInterfaces();
+
         }
         
     }

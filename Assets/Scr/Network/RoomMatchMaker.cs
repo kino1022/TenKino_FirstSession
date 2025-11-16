@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Fusion;
 using Fusion.Sockets;
+using ObservableCollections;
 using Scr.AppManager;
 using Scr.Utility;
 using Sirenix.OdinInspector;
@@ -11,11 +12,15 @@ using VContainer;
 namespace Scr.Network {
     public class RoomMatchMaker : SerializedMonoBehaviour, INetworkRunnerCallbacks, IConstructable {
 
+        private ObservableList<SessionInfo> _sessions = new();
+
         private NetworkRunner _runner;
         
         private IRunnerProvider _runnerProvider;
         
         private IObjectResolver _resolver;
+        
+        public IReadOnlyObservableList<SessionInfo> Sessions => _sessions;
         
         /// <summary>
         /// ロビーへの参加に成功した際に呼び出されるイベント
@@ -163,7 +168,7 @@ namespace Scr.Network {
         }
         
         public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList) {
-            
+            _sessions = new (sessionList);
         }
         
         public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) {
