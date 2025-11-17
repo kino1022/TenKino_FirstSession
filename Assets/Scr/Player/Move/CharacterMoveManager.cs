@@ -10,7 +10,7 @@ namespace Scr.Player.Move {
 
         [OdinSerialize]
         [LabelText("運動量マネージャ")]
-        private List<IMovementManager> _managers;
+        private List<IMovementProvider> _managers;
         
         private NetworkCharacterController _characterController;
 
@@ -40,7 +40,7 @@ namespace Scr.Player.Move {
                     return;
                 }
                 
-                result += x.Movement;
+                result += x.Velocity;
             });
             
             return result;

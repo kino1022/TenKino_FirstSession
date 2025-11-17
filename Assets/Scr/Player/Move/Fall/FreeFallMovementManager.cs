@@ -4,7 +4,7 @@ using VContainer;
 
 namespace Scr.Player.Move.Fall {
 
-    public interface IFallMovementManager : IMovementManager {
+    public interface IFallMovementManager : IMovementProvider {
         
         ICorrectionManager Correction { get; }
         
@@ -43,7 +43,7 @@ namespace Scr.Player.Move.Fall {
             }
 
             var movement = Physics.gravity.y;
-            movement = _correction is not null ? _correction.Apply(movement) : movement;
+            movement = _correction != null ? _correction.Apply(movement) : movement;
             return new Vector3(0.0f, movement, 0.0f);
         }
     }

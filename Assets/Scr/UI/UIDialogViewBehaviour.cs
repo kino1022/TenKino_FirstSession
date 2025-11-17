@@ -35,7 +35,8 @@ namespace Scr.UI {
             
             _canvasGroup ??= gameObject.AddComponent<CanvasGroup>();
             
-            _closeButton?.OnClickAsObservable()
+            _closeButton?
+                .OnClickAsObservable()
                 .Subscribe(_ => {
                     _closeSubject.OnNext(Unit.Default);
                 })

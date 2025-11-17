@@ -5,11 +5,11 @@ using VContainer;
 
 namespace Scr.Player.Move {
 
-    public interface IMovementManager {
-        Vector3 Movement { get; }
+    public interface IMovementProvider {
+        Vector3 Velocity { get; }
     }
     
-    public abstract class MovementBehaviour : SerializedMonoBehaviour, IMovementManager, IConstructable{
+    public abstract class MovementBehaviour : SerializedMonoBehaviour, IMovementProvider, IConstructable{
         
         protected Vector3 _movement = Vector3.zero;
 
@@ -17,7 +17,7 @@ namespace Scr.Player.Move {
         
         protected IObjectResolver _resolver;
         
-        public Vector3 Movement {
+        public Vector3 Velocity {
             get {
                 if (_movement.magnitude < _threshold || _isEnable is false) return Vector3.zero;
                 
